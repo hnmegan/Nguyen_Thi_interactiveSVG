@@ -4,7 +4,7 @@ var sql = require('../utils/sql')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Ngoc' });
+  res.render('index', { title: 'Ngoc', image: 'images/friends.svg' });
 });
 
 router.get('/character/:id', function(req,res,next){
@@ -15,8 +15,9 @@ router.get('/character/:id', function(req,res,next){
     if(err){
       throw err;
     }
-    console.log(result)
-    res.json(result[0])
+    console.info(result[0]);
+    res.render('index', { rank: 'Rank #' + result[0].Rank, lines: '- ' + result[0].Lines + ' lines', name: result[0].Name, saying: 'Famous line: ' + result[0].Sayings, image: 'images/friends.svg'});
+
   })
 })
 
